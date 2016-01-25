@@ -1,14 +1,22 @@
-(ns seagiant.systems)
+(ns seagiant.systems
+  (:require [reagent.core :as r]))
 
 (def state {
-  :system "solar"})
+  :current-system :solar
+  :systems {
+    :solar "solar"}})
 
 (defn slog [& m]
   "Simple logging tentative"
-  (.log js/console (str m)))
+  (.log js/console (reduce str m)))
 
 (slog "S Y S T E M S")
 
-(slog (get state :system))
+(slog (get state :current-system))
 
-(slog "multiple" "message")
+(defn hello []
+  [:h1 "HELLO PLAYER"])
+
+(defn ^:export run []
+  (r/render [hello]
+            (js/document.getElementById "app")))

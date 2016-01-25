@@ -1,6 +1,7 @@
 (defproject systems "0.0.1"
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.170"]]
+                 [org.clojure/clojurescript "1.7.170"]
+                 [reagent "0.6.0-alpha"]]
   :plugins [[lein-cljsbuild "1.1.2"]
             [lein-figwheel "0.5.0-1"]]
   :cljsbuild {
