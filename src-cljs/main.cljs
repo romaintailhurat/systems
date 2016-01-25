@@ -12,11 +12,18 @@
 
 (slog "S Y S T E M S")
 
-(slog (get state :current-system))
+(defn title []
+  [:div "S Y S T E M S"])
 
-(defn hello []
-  [:h1 "HELLO PLAYER"])
+(defn current-system [cs]
+  [:div
+    (str cs)])
+
+(defn app []
+  [:div
+    [title]
+    [current-system (get state :current-system)]])
 
 (defn ^:export run []
-  (r/render [hello]
+  (r/render [app]
             (js/document.getElementById "app")))
