@@ -4,7 +4,12 @@
 (def state {
   :current-system :solar
   :systems {
-    :solar "solar"}})
+    :solar {
+      :name "solar"
+      :planets {
+        :mercury "mercury"
+        :mars "mars"
+      }}}})
 
 (defn slog [& m]
   "Simple logging tentative"
@@ -19,10 +24,14 @@
   [:div
     (str cs)])
 
+(defn debug [input]
+  [:div (str input)])
+
 (defn app []
   [:div
     [title]
-    [current-system (get state :current-system)]])
+    [current-system (get state :current-system)]
+    [debug state]])
 
 (defn ^:export run []
   (r/render [app]
