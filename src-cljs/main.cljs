@@ -13,7 +13,8 @@
 (defn gen-card [name attack life]
   {:name name :attack attack :life life})
 
-;;(defn gen-map [x y])
+(defn gen-map [x y]
+  (vec (range x)))
 
 ;; game state
 (def state {
@@ -47,11 +48,17 @@
     (for [c cards]
       [:p (str c)])])
 
+(defn map []
+  [:div
+    [:p "map"]
+    [:p (str (gen-map 3 3))]])
+
 ;; app
 (defn app []
   [:div
     [title]
     [cards "player one" (get state :player-one-cards)]
+    [map]
     [cards "player two" (get state :player-two-cards)]
   ])
 
