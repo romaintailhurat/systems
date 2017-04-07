@@ -13,7 +13,7 @@
 (defn gen-card [name attack life]
   {:name name :attack attack :life life})
 
-(defn gen-map [x y])
+;;(defn gen-map [x y])
 
 ;; game state
 (def state {
@@ -52,7 +52,7 @@
   [:div
     [title]
     [cards "player one" (get state :player-one-cards)]
-    [cards "player two" (get state :player-twofre;pll-cards)]
+    [cards "player two" (get state :player-two-cards)]
   ])
 
 (defn ^:export run []
