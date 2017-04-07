@@ -1,49 +1,59 @@
 (ns seagiant.systems
   (:require [reagent.core :as r]))
 
-(def state {
-  :current-system :solar
-  :systems {
-    :solar {
-      :name "solar"
-      :planets {
-        :mercury "mercury"
-        :mars "mars"
-      }}}})
-
-(def cards-1
-  {:player "1st"
-  :cards (array "blip" "blap" "bloup")})
-
+;; utils
 (defn slog [& m]
   "Simple logging tentative"
   (.log js/console (reduce str m)))
 
-(slog "S Y S T E M S")
-
-(slog (str cards-1))
-(slog (nth (get cards-1 :cards) 0))
-
-(defn title []
-  [:div "S Y S T E M S"])
-
-(defn current-system [cs]
-  [:div
-    (str cs)])
-
 (defn debug [input]
   [:div (str input)])
+
+;; logic
+(defn gen-card [name attack life]
+  {:name name :attack attack :life life})
+
+(defn gen-map [x y])
+
+;; game state
+(def state {
+  :current-player :player-one
+  :players :player-one
+  :player-one-cards {
+    :c1 (gen-card "oliver" 2 2)
+    :c2 (gen-card "eric" 5 1)
+    :c3 (gen-card "bernard" 0 8)
+    :c4 (gen-card "romain" 0 0)
+  }
+  :player-two-cards {
+    :c1 (gen-card "oliver" 2 2)
+    :c2 (gen-card "eric" 5 1)
+    :c3 (gen-card "bernard" 0 8)
+    :c4 (gen-card "romain" 0 0)
+    }})
+
+
+;; components
+(defn title []
+  [:div "KARDS"])
 
 (defn card [c]
   [:div
     (str c)])
 
+(defn cards [player cards]
+  [:div
+    [:p (str "player is " player)]
+    (for [c cards]
+      [:p (str c)])])
+
+;; app
 (defn app []
   [:div
     [title]
-    [current-system (get state :current-system)]
-    [debug cards-1]
-    [card (nth (get cards-1 :cards) 0)]])
+    [cards "player one" (get state :player-one-cards)]
+    [cards "player two" (get state :player-twofre;pll-cards)]
+  ])
 
 (defn ^:export run []
   (r/render [app]
